@@ -1,7 +1,7 @@
 from django.db import models
 
 from users.models import User
-
+from users.services import get_current_user
 
 class Product(models.Model):
     ''' Product entity which user can buy or sell'''
@@ -16,7 +16,7 @@ class Product(models.Model):
         verbose_name='Price')
     owner = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         blank=True,
         null=True,
         verbose_name='Owner')
@@ -33,11 +33,16 @@ class Product(models.Model):
         default=True,
         verbose_name='Available')
 
-    def is_available(self):
-        return self.available
     # comment = models.ForeignKey(
     #     Comment,
     #     blank=True,
     #     null=True,
     #     on_delete=models.CASCADE,
     #     verbose_name='Owner'))
+
+    def save(self, *args, **kwargs):
+        self.owner = get_current_user()
+        super().save(*args, **kwargs)
+
+    def is_available(self):
+        return self.available
