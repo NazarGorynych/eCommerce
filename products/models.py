@@ -3,6 +3,7 @@ from django.db import models
 from users.models import User
 from users.services import get_current_user
 
+
 class Product(models.Model):
     ''' Product entity which user can buy or sell'''
     name = models.CharField(
@@ -39,10 +40,6 @@ class Product(models.Model):
     #     null=True,
     #     on_delete=models.CASCADE,
     #     verbose_name='Owner'))
-
-    def save(self, *args, **kwargs):
-        self.owner = get_current_user()
-        super().save(*args, **kwargs)
 
     def is_available(self):
         return self.available
