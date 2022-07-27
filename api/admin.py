@@ -1,9 +1,9 @@
-
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from products.models import Product
 from users.models import User
+from comments.models import ProductComment
 
 
 class Admin(UserAdmin):
@@ -12,4 +12,4 @@ class Admin(UserAdmin):
 
 
 admin.site.register(Product)
-
+admin.site.register(ProductComment)

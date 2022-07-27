@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # applications
     'products',
     'users',
+    'comments',
 
     # api
     'api',

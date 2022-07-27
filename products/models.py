@@ -9,30 +9,37 @@ class Product(models.Model):
     name = models.CharField(
         blank=False,
         max_length=60,
-        verbose_name='Name')
+        verbose_name='Name'
+    )
     price = models.DecimalField(
-        default=0,
+        blank=False,
         decimal_places=2,
         max_digits=1000000,
-        verbose_name='Price')
+        verbose_name='Price'
+    )
     owner = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
         blank=True,
         null=True,
-        verbose_name='Owner')
+        verbose_name='Owner'
+    )
     created_on = models.DateTimeField(
         auto_now_add=True,
-        verbose_name='Created on')
+        verbose_name='Created on'
+    )
     last_modified = models.DateTimeField(
         auto_now=True,
-        verbose_name='Modified on')  # automatically sets current date every time model is saved
+        verbose_name='Modified on'  # automatically sets current date every time model is saved
+    )
     description = models.TextField(
         blank=True,
-        verbose_name='Description')
+        verbose_name='Description'
+    )
     available = models.BooleanField(
         default=True,
-        verbose_name='Available')
+        verbose_name='Available'
+    )
 
     # comment = models.ForeignKey(
     #     Comment,
